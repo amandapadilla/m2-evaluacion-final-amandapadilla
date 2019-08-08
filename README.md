@@ -2,7 +2,9 @@
 
 Evaluación final del módulo 2 by amandapadilla
 
-Realizar un buscador de series
+El ejercicio consiste en desarrollar una aplicación web de búsqueda de series de TV, donde demostraremos los conocimientos de JavaScript adquiridos durante el módulo. El ejercicio también tiene una parte de maquetación con HTML y Sass, os recomendamos dedicar esfuerzo a la maquetación una vez terminada la parte de JavaScript
+
+Ahora te dejo por aquí como se usa el pack en el que se incluye este proyecto, por si quieres utilizarlo:
 
 # Adalab web starter kit
 
