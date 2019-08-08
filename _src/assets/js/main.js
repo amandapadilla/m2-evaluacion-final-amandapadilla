@@ -7,7 +7,7 @@
 const inputSearch = document.querySelector(".js-inputSearch");
 const searchSubmit = document.querySelector(".js-searchSubmit");
 let data;
-let show;
+let showCards;
 
 //Escuchar click de búsqueda
 
@@ -44,11 +44,35 @@ const formatServerData = data => {
 };
 
 //Recoger datos de búsqueda (nombre, portada)
-// const getDataFromArray = () => {
-
-// }
+const saveDataInShowCards = (data) => {
+    showCards = data;
+};
 //Pintar resultados en display
 
+const paintShowCards = () => {
+    const displayCardsList = document.querySelector('.js-resultList');
+    for (let cardIndex = 0; cardIndex < showCards.length; cardIndex++) {
+
+
+
+
+
+
+
+
+
+      htmlCode += `<li class="result-item" ${getFavoriteClassName(cardIndex)} js-palette" data-index="${paletteIndex}">`;
+      htmlCode += `<p class="palettes__name">${palettes[paletteIndex].name}</p>`;
+      htmlCode += '<ul class="palettes__colors">';
+      for (const color of palettes[paletteIndex].colors) {
+        htmlCode += `<li class="palettes__color" style="background-color: #${color}"></li>`;
+      }
+      htmlCode += '</ul>';
+      htmlCode += '</li>';
+    }
+    listElement.innerHTML = htmlCode;
+    console.log('Paint palettes form `palettes` array into DOM >>> Palettes:', palettes, 'Favorites:', favorites);
+  };
 ////////////////////////////////////////////
 
 //Escuchar click sobre tarjeta de serie
@@ -68,4 +92,4 @@ const formatServerData = data => {
 ////////////////////////////////////////////
 
 //OPCIONAL Crear funcionalidad 'Quitar de Favoritos'
-//OPCIONAL Reset data
+//OPCIONAL 
