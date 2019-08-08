@@ -1,3 +1,24 @@
 .main {
   background-color: pink;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+
+  &__results--container {
+    width: 60%;
+  }
+
+  &__aside--container {
+    width: 30%;
+  }
+
+  &__title--results {
+    font-family: $font;
+  }
+
+  &__title--favorites {
+    font-family: $font;
+    margin-left: 20px;
+  }
 }
