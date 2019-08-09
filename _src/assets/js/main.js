@@ -76,6 +76,7 @@ const addShowCardsToFavorites = event => {
   showCardsIndex = parseInt(event.currentTarget.dataset.index);
   favorites.push(showCards[showCardsIndex]);
   paintFavoritesShowCards();
+  setFavoritesInLocalStorage();
 };
 const listenShowCards = () => {
   let cards = document.querySelectorAll(".js-showCard");
@@ -102,18 +103,17 @@ const paintFavoritesShowCards = () => {
 
 //Guardar datos en localStorage
 
-// const setFavoritesInLocalStorage = () => {
-//   const favoritesName = favorites[favoritesIndex].name;
-
-//   localStorage.setItem("show", JSON.stringify(showCardsName));
-// };
+const setFavoritesInLocalStorage = () => {
+  const favoritesName = favorites[showCardsIndex].name;
+  localStorage.setItem("show", JSON.stringify(favoritesName));
+};
 
 //Traer datos de localStorage tras hacer F5
 
-// const getFavoritesFromLocalStorage = () => {
-//   const getFavoritesShowsList = JSON.parse(localStorage.getItem("show"));
-// };
-
+const getFavoritesFromLocalStorage = () => {
+  const getFavorites = JSON.parse(localStorage.getItem("show"));
+};
+getFavoritesFromLocalStorage();
 // ////////////////////////////////////////////
 
 // //OPCIONAL Crear funcionalidad 'Quitar de Favoritos'

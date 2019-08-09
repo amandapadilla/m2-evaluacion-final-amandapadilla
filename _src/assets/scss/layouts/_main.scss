@@ -14,18 +14,24 @@
 
   &__title--results {
     font-family: $font;
+    text-align: center;
+    margin-bottom: 10px;
   }
 
   &__title--favorites {
     font-family: $font;
     margin-left: 5px;
   }
-  &__list--favorites {
-    list-style: none;
-  }
+}
+
+.js-resultList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .result-itemName {
   font-family: $font;
   text-align: center;
+  list-style: none;
 }
