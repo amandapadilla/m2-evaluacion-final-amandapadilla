@@ -48,16 +48,22 @@ const formatServerData = data => {
 const saveDataInShowCards = data => {
   showCards = data;
 };
-debugger;
+
 const paintShowCards = () => {
+  let showCardsList = document.querySelector(".js-resultList");
+  let htmlCode = "";
   for (
     let showCardsIndex = 0;
     showCardsIndex < showCards.length;
     showCardsIndex++
   ) {
-    console.log(showCards[showCardsIndex].show.name);
-    console.log(showCards[showCardsIndex].show.image.medium);
+    htmlCode += `<li class="result-itemName js-showCardsName">${
+      showCards[showCardsIndex].name
+    }<img src="${
+      showCards[showCardsIndex].image
+    }" class="result-itemImage js-showCardsImage></li>`;
   }
+  showCardsList.innerHTML = htmlCode;
 };
 
 // // Pintar resultados en display --- Componer función
