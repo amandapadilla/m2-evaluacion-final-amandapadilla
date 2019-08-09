@@ -78,6 +78,7 @@ const addShowCardsToFavorites = event => {
   paintFavoritesShowCards();
   setFavoritesInLocalStorage();
 };
+
 const listenShowCards = () => {
   let cards = document.querySelectorAll(".js-showCard");
   for (const card of cards) {
@@ -115,13 +116,3 @@ const getFavoritesFromLocalStorage = () => {
 };
 getFavoritesFromLocalStorage();
 // ////////////////////////////////////////////
-
-// //OPCIONAL Crear funcionalidad 'Quitar de Favoritos'
-//¿Is already in favorites? true/false
-// const isInFavoritesShowCard = () => {
-//   if (showCards === favoriteShowCard) {
-//    return false;
-//   }else{
-//     return true;
-//   }
-// }
