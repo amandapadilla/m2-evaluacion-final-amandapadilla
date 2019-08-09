@@ -26,19 +26,29 @@ const getDataFromServer = ev => {
       data = formatServerData(data);
       saveDataInShowCards(data);
       paintShowCards();
-      // listenShowCards();
+      listenShowCards();
     });
 };
 
 searchSubmit.addEventListener("click", getDataFromServer);
 
 //Formatear datos (desde JSON seleccionar sólo nombre y portada)
+//Si tiene imagen pinta la imagen y si no pinta el default
 const formatServerData = data => {
   let result = [];
   for (let i = 0; i < data.length; i++) {
+    // if (
+    //   result.push({
+    //     name: data[i].show.name,
+    //     image: undefined
+    //   })
+    // ) {
+    //   console.log(document.write('<img
+    //   src="./assets/images/default-image.png">'));
+    // } else {
     result.push({
       name: data[i].show.name,
-      image: data[i].show.image.medium //¿Es la ruta correcta de llamada a los datos del JSON? Data=undefined
+      image: data[i].show.image.medium
     });
   }
   return result;
@@ -49,6 +59,7 @@ const saveDataInShowCards = data => {
   showCards = data;
 };
 
+// Pintar resultados en display
 const paintShowCards = () => {
   let showCardsList = document.querySelector(".js-resultList");
   let htmlCode = "";
@@ -57,61 +68,89 @@ const paintShowCards = () => {
     showCardsIndex < showCards.length;
     showCardsIndex++
   ) {
-    htmlCode += `<li class="result-itemName js-showCardsName">${
-      showCards[showCardsIndex].name
-    }<img src="${
-      showCards[showCardsIndex].image
-    }" class="result-itemImage js-showCardsImage></li>`;
+    const showCardsName = showCards[showCardsIndex].name;
+    const showCardsImg = showCards[showCardsIndex].image;
+    htmlCode += `<li class="result-itemName js-showCardsName" data-index="${showCardsIndex}">${showCardsName}<img src="${showCardsImg}" class="result-itemImage js-showCardsImage"></li>`;
   }
   showCardsList.innerHTML = htmlCode;
 };
-
-// // Pintar resultados en display --- Componer función
-// //
-
-// let showCardsList = document.querySelector(".js-resultList");
-// showCardsList = [showCards];
-
-// for (
-//   let showCardsIndex = 0;
-//   showCardsIndex < showCardsList.length;
-//   showCardsIndex++
-// ) {
-//   const newShowCard = showCardsList.createElement("li");
-//   const addFavoriteClassToNewShowCard = newShowCard;
-//   newShowCard;
-//   const newShowCardContent = showCardsList.createTextNode(
-//     `${name}, ${showImage}`
-//   );
-// }
-
-// addFavoriteClassToNewShowCard = "js-resultItem";
-// showCardsList.appendChild(newShowCard); // ¿No es necesario porque ya está creado el ul?
-
-//¿Cómo hago el bucle para que me pinte todos los resultados? Y cómo agrego la clase a los items <li></li>
 
 ////////////////////////////////////////////
 
 //Escuchar click sobre tarjeta de serie
 
-// //Leer datos seleccionados
+const showCardsFavorite = [];
 
-//¿Is favorite? true/false
+const addShowCardsToFavorites = ev => {
+  event.preventDefault();
+  console.log(ev.currentTarget);
+  // addStylesToSelectedShowCard ();
+  // getShowCardsFavoritesList();
+  // paintFavoritesShowCards();
+  // setFavoritesInLocalStorage ();
+};
 
-// //Cambiar estilo de los datos seleccionados - toggle
+const listenShowCards = () => {
+  let cards = document.querySelectorAll(".js-showCardsName");
+  for (showCardsIndex of cards) {
+    showCardsIndex.addEventListener("click", addShowCardsToFavorites);
+  }
+};
+//showCards.addEventListener("click", addShowCardsToFavorites);
 
-// // const addStylesToSelectedShowCard = () => {
-// //   if (isFavoriteShowCard)
-// // };
+//Cambiar estilo de los datos seleccionados - classList.toggle
+
+// const addStylesToSelectedShowCard = () => {
+//   if (showCards)
+// };
 
 // //Guardar datos seleccionados en un array de FAVORITOS
+// const getShowCardsFavoritesList = () => {
+//   for (
+//     let showCardsIndex = 0;
+//     showCardsIndex < showCards.length;
+//     showCardsIndex++
+//   ) {
+//     let selectedShowCard = ev.currentTarget;
+//     let favoriteShowCard = selectedShowCard;
+//   }
+// };
 
-// //Pintar en FAVORITOS (temporizador 1s) para permitir ver el cambio de la tarjeta opcional
+// //Pintar en FAVORITOS
+// const paintFavoritesShowCards = () => {
+//   let showCardsFavoritesList = document.querySelector(".js-favoritesList");
+//   let htmlCode = "";
+//   for (
+//     let showCardsIndex = 0;
+//     showCardsIndex < showCards.length;
+//     showCardsIndex++
+//   ) {
+//     htmlCode += `<li class="result-itemName js-showCardsName">${showCardsName}</li>`;
+//   }
+//   showCardsFavoritesList.innerHTML = htmlCode;
+// };
 
-// //Guardar datos en localStorage
+//Guardar datos en localStorage
 
-// //Traer datos de localStorage tras hacer F5
+// const setFavoritesInLocalStorage = () => {
+//   const showCardsName = showCards[showCardsIndex].name;
+//   localStorage.setItem("show", JSON.stringify(showCardsName));
+// };
+
+//Traer datos de localStorage tras hacer F5
+
+// const getFavoritesFromLocalStorage = () => {
+
+// }
 
 // ////////////////////////////////////////////
 
 // //OPCIONAL Crear funcionalidad 'Quitar de Favoritos'
+//¿Is already in favorites? true/false
+// const isInFavoritesShowCard = () => {
+//   if (showCards === favoriteShowCard) {
+//    return false;
+//   }else{
+//     return true;
+//   }
+// }

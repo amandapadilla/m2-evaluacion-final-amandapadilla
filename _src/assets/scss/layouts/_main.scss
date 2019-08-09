@@ -2,7 +2,6 @@
   background-color: pink;
   display: flex;
   flex-direction: row-reverse;
-  align-items: center;
   justify-content: space-between;
 
   &__results--container {
@@ -19,6 +18,14 @@
 
   &__title--favorites {
     font-family: $font;
-    margin-left: 20px;
+    margin-left: 5px;
   }
+  &__list--favorites {
+    list-style: none;
+  }
+}
+
+.result-itemName {
+  font-family: $font;
+  text-align: center;
 }
