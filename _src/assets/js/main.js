@@ -1,14 +1,14 @@
 "use strict";
 
 // RECUERDA HACER console.log(); para probar las funciones
-debugger;
+// debugger;
 
 //Almacenar constantes
 const inputSearch = document.querySelector(".js-inputSearch");
 const searchSubmit = document.querySelector(".js-searchSubmit");
 let data;
 let showCards;
-debugger;
+
 //Escuchar click de búsqueda
 
 //Leer datos de búsqueda
@@ -16,21 +16,24 @@ const formatInputSearchValue = () => {
   const inputSearchValue = inputSearch.value;
   return inputSearchValue.toLowerCase();
 };
-debugger;
+
 //Traer datos del servidor ¿Es posible traer con la URL sólo los datos que queremos?
-const getDataFromServer = async ev => {
+const getDataFromServer = ev => {
   event.preventDefault();
   const searchUrl = `http://api.tvmaze.com/search/shows?q=${formatInputSearchValue()}`;
-  const response = await fetch(searchUrl) //probar con serie girls, pero se debe modificar la url para traer sólo lo que queremos. ¿Como programo que la última palabra la tome del input?
-    ;
-  const data = await response.json();
-  data = formatServerData(data);
-  saveDataInShowCards(data);
-  paintShowCards();
-  // listenShowCards();
-};
+  return fetch(searchUrl)
+    .then (response => response.json())
+    .then (data => {
+    console.log (data);
+    formatServerData(data);
+    saveDataInShowCards(data);
+    paintShowCards();
+    listenShowCards();
+    });
+  };
+
 searchSubmit.addEventListener("click", getDataFromServer);
-debugger;
+
 //Formatear datos (desde JSON seleccionar sólo nombre y portada)
 const formatServerData = data => {
     result =[];
@@ -39,7 +42,7 @@ const formatServerData = data => {
         name: data.name,
         image: data.image
         });    
-  return result;
+  return result};
 };
 debugger;
 //Recoger datos de búsqueda (nombre, portada)
