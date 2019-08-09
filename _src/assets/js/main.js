@@ -7,6 +7,7 @@
 const inputSearch = document.querySelector(".js-inputSearch");
 const searchSubmit = document.querySelector(".js-searchSubmit");
 let showCards = [];
+let favorites = [];
 
 //Escuchar click de búsqueda
 
@@ -33,19 +34,9 @@ const getDataFromServer = event => {
 searchSubmit.addEventListener("click", getDataFromServer);
 
 //Formatear datos (desde JSON seleccionar sólo nombre y portada)
-//Si tiene imagen pinta la imagen y si no pinta el default
 const formatServerData = data => {
   let result = [];
   for (let i = 0; i < data.length; i++) {
-    // if (
-    //   result.push({
-    //     name: data[i].show.name,
-    //     image: undefined
-    //   })
-    // ) {
-    //   console.log(document.write('<img
-    //   src="./assets/images/default-image.png">'));
-    // } else {
     result.push({
       name: data[i].show.name,
       image: data[i].show.image.medium
@@ -70,7 +61,7 @@ const paintShowCards = () => {
   ) {
     const showCardsName = showCards[showCardsIndex].name;
     const showCardsImg = showCards[showCardsIndex].image;
-    htmlCode += `<li class="result-itemName js-showCardsName" data-index="${showCardsIndex}">${showCardsName}<img src="${showCardsImg}" class="result-itemImage js-showCardsImage"></li>`;
+    htmlCode += `<li class="result-itemName js-showCard" data-index="${showCardsIndex}">${showCardsName}<img src="${showCardsImg}" class="result-itemImage js-showCardsImage"></li>`;
   }
   showCardsList.innerHTML = htmlCode;
 };
@@ -78,28 +69,20 @@ const paintShowCards = () => {
 ////////////////////////////////////////////
 
 //Escuchar click sobre tarjeta de serie
-const showCardsFavorite = [];
 let showCardsIndex;
 
 const addShowCardsToFavorites = event => {
   event.preventDefault();
   showCardsIndex = parseInt(event.currentTarget.dataset.index);
-  // addStylesToSelectedShowCard ();
-  // getShowCardsFavoritesList();
+  favorites.push(showCards[showCardsIndex]);
   paintFavoritesShowCards();
-  // setFavoritesInLocalStorage ();
 };
 const listenShowCards = () => {
-  let cards = document.querySelectorAll(".js-resultList");
-  for (showCardsIndex of cards) {
-    showCardsIndex.addEventListener("click", addShowCardsToFavorites);
+  let cards = document.querySelectorAll(".js-showCard");
+  for (const card of cards) {
+    card.addEventListener("click", addShowCardsToFavorites);
   }
 };
-//Cambiar estilo de los datos seleccionados - classList.toggle
-
-// const addStylesToSelectedShowCard = () => {
-//   if (showCards)
-// };
 
 // //Pintar en FAVORITOS
 const paintFavoritesShowCards = () => {
@@ -107,12 +90,12 @@ const paintFavoritesShowCards = () => {
   let htmlCode = "";
   for (
     let showCardsIndex = 0;
-    showCardsIndex < showCards.length;
+    showCardsIndex < favorites.length;
     showCardsIndex++
   ) {
-    const showCardsName = showCards[showCardsIndex].name;
-    const showCardsImg = showCards[showCardsIndex].image;
-    htmlCode += `<li class="result-favoriteName js-favoriteShowName" data-index="${showCardsIndex}">${showCardsName}<img src="${showCardsImg}" class="result-favoriteImage js-favoriteShowImage"></li>`;
+    const favoritesName = favorites[showCardsIndex].name;
+    const favoritesImg = favorites[showCardsIndex].image;
+    htmlCode += `<li class="result-favoriteName js-favoriteShowName" data-index="${showCardsIndex}">${favoritesName}<img src="${favoritesImg}" class="result-favoriteImage js-favoriteShowImage"></li>`;
   }
   showCardsFavoritesList.innerHTML = htmlCode;
 };
@@ -120,7 +103,8 @@ const paintFavoritesShowCards = () => {
 //Guardar datos en localStorage
 
 // const setFavoritesInLocalStorage = () => {
-//   const showCardsName = showCards[showCardsIndex].name;
+//   const favoritesName = favorites[favoritesIndex].name;
+
 //   localStorage.setItem("show", JSON.stringify(showCardsName));
 // };
 
