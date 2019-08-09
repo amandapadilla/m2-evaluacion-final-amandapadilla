@@ -17,7 +17,7 @@ const formatInputSearchValue = () => {
 };
 
 //Traer datos del servidor ¿Es posible traer con la URL sólo los datos que queremos?
-const getDataFromServer = ev => {
+const getDataFromServer = event => {
   event.preventDefault();
   const searchUrl = `http://api.tvmaze.com/search/shows?q=${inputSearch.value}`; //no tiene el lowercase porque no funcionaba llamando la función formatInputSearchValue
   return fetch(searchUrl)
@@ -78,57 +78,44 @@ const paintShowCards = () => {
 ////////////////////////////////////////////
 
 //Escuchar click sobre tarjeta de serie
-
 const showCardsFavorite = [];
+let showCardsIndex;
 
-const addShowCardsToFavorites = ev => {
+const addShowCardsToFavorites = event => {
   event.preventDefault();
-  console.log(ev.currentTarget);
+  showCardsIndex = parseInt(event.currentTarget.dataset.index);
   // addStylesToSelectedShowCard ();
   // getShowCardsFavoritesList();
-  // paintFavoritesShowCards();
+  paintFavoritesShowCards();
   // setFavoritesInLocalStorage ();
 };
-
 const listenShowCards = () => {
-  let cards = document.querySelectorAll(".js-showCardsName");
+  let cards = document.querySelectorAll(".js-resultList");
   for (showCardsIndex of cards) {
     showCardsIndex.addEventListener("click", addShowCardsToFavorites);
   }
 };
-//showCards.addEventListener("click", addShowCardsToFavorites);
-
 //Cambiar estilo de los datos seleccionados - classList.toggle
 
 // const addStylesToSelectedShowCard = () => {
 //   if (showCards)
 // };
 
-// //Guardar datos seleccionados en un array de FAVORITOS
-// const getShowCardsFavoritesList = () => {
-//   for (
-//     let showCardsIndex = 0;
-//     showCardsIndex < showCards.length;
-//     showCardsIndex++
-//   ) {
-//     let selectedShowCard = ev.currentTarget;
-//     let favoriteShowCard = selectedShowCard;
-//   }
-// };
-
 // //Pintar en FAVORITOS
-// const paintFavoritesShowCards = () => {
-//   let showCardsFavoritesList = document.querySelector(".js-favoritesList");
-//   let htmlCode = "";
-//   for (
-//     let showCardsIndex = 0;
-//     showCardsIndex < showCards.length;
-//     showCardsIndex++
-//   ) {
-//     htmlCode += `<li class="result-itemName js-showCardsName">${showCardsName}</li>`;
-//   }
-//   showCardsFavoritesList.innerHTML = htmlCode;
-// };
+const paintFavoritesShowCards = () => {
+  let showCardsFavoritesList = document.querySelector(".js-favoritesList");
+  let htmlCode = "";
+  for (
+    let showCardsIndex = 0;
+    showCardsIndex < showCards.length;
+    showCardsIndex++
+  ) {
+    const showCardsName = showCards[showCardsIndex].name;
+    const showCardsImg = showCards[showCardsIndex].image;
+    htmlCode += `<li class="result-favoriteName js-favoriteShowName" data-index="${showCardsIndex}">${showCardsName}<img src="${showCardsImg}" class="result-favoriteImage js-favoriteShowImage"></li>`;
+  }
+  showCardsFavoritesList.innerHTML = htmlCode;
+};
 
 //Guardar datos en localStorage
 
@@ -140,8 +127,8 @@ const listenShowCards = () => {
 //Traer datos de localStorage tras hacer F5
 
 // const getFavoritesFromLocalStorage = () => {
-
-// }
+//   const getFavoritesShowsList = JSON.parse(localStorage.getItem("show"));
+// };
 
 // ////////////////////////////////////////////
 
