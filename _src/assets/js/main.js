@@ -1,6 +1,5 @@
 "use strict";
 
-
 // RECUERDA HACER console.log(); para probar las funciones
 // debugger;
 
@@ -8,7 +7,6 @@
 const inputSearch = document.querySelector(".js-inputSearch");
 const searchSubmit = document.querySelector(".js-searchSubmit");
 let showCards = [];
-let data;
 
 //Escuchar click de búsqueda
 
@@ -19,18 +17,16 @@ const formatInputSearchValue = () => {
 };
 
 //Traer datos del servidor ¿Es posible traer con la URL sólo los datos que queremos?
-const getDataFromServer = (ev) => {
+const getDataFromServer = ev => {
   event.preventDefault();
-  const searchUrl = `http://api.tvmaze.com/search/shows?q=${formatInputSearchValue()}`;
-  
+  const searchUrl = `http://api.tvmaze.com/search/shows?q=${inputSearch.value}`; //no tiene el lowercase porque no funcionaba llamando la función formatInputSearchValue
   return fetch(searchUrl)
-    .then (response => response.json())
-    .then (data => {
-      
+    .then(response => response.json())
+    .then(data => {
       data = formatServerData(data);
       saveDataInShowCards(data);
       paintShowCards();
-      listenShowCards();
+      // listenShowCards();
     });
 };
 
@@ -38,92 +34,78 @@ searchSubmit.addEventListener("click", getDataFromServer);
 
 //Formatear datos (desde JSON seleccionar sólo nombre y portada)
 const formatServerData = data => {
-  const result =[];
-  for (let i=0;i<data.length;i++) {
+  let result = [];
+  for (let i = 0; i < data.length; i++) {
     result.push({
-      name: data.name,
-      image: data.image
+      name: data[i].show.name,
+      image: data[i].show.image.medium //¿Es la ruta correcta de llamada a los datos del JSON? Data=undefined
     });
-  };
+  }
   return result;
-  console.log ('Respuesta', data);
 };
 
 //Recoger datos de búsqueda (nombre, portada)
-const saveDataInShowCards = (data) => {
+const saveDataInShowCards = data => {
   showCards = data;
 };
-//Pintar resultados en display --- REHACER CÓDIGO
+debugger;
+const paintShowCards = () => {
+  for (
+    let showCardsIndex = 0;
+    showCardsIndex < showCards.length;
+    showCardsIndex++
+  ) {
+    console.log(showCards[showCardsIndex].show.name);
+    console.log(showCards[showCardsIndex].show.image.medium);
+  }
+};
 
-const newShowCard = document.createElement('li');
-const newShowCardContent = document.createTextNode(showCards);
-newShowCard.appendChild(newShowCardContent);
-const showCardsList = document.querySelector('.js-displayResults');
-showCardsList.appendChild(newShowCard);
-  
-//¿Cómo hago el bucle para que me pinte todos los resultados?
-const addFavoriteClassToNewShowCard = showCardsIndex 
+// // Pintar resultados en display --- Componer función
+// //
+
+// let showCardsList = document.querySelector(".js-resultList");
+// showCardsList = [showCards];
+
+// for (
+//   let showCardsIndex = 0;
+//   showCardsIndex < showCardsList.length;
+//   showCardsIndex++
+// ) {
+//   const newShowCard = showCardsList.createElement("li");
+//   const addFavoriteClassToNewShowCard = newShowCard;
+//   newShowCard;
+//   const newShowCardContent = showCardsList.createTextNode(
+//     `${name}, ${showImage}`
+//   );
+// }
+
+// addFavoriteClassToNewShowCard = "js-resultItem";
+// showCardsList.appendChild(newShowCard); // ¿No es necesario porque ya está creado el ul?
+
+//¿Cómo hago el bucle para que me pinte todos los resultados? Y cómo agrego la clase a los items <li></li>
 
 ////////////////////////////////////////////
 
 //Escuchar click sobre tarjeta de serie
-const listenClickOnShowCards = () => {
-  console.log('Listen click on new showCards DOM elements');
-  const paletteElements = document.querySelectorAll('.js-palette');
-  for (const paletteElement of paletteElements) {
-    paletteElement.addEventListener('click', handleClick);
-  }
-};
-const handleClick = ev => {
-  console.log('Handle click on a palette DOM element');
-  const paletteIndex = getClickedPalette(ev);
-  if (isFavoritePalette(paletteIndex)) {
-    removeFavorite(paletteIndex);
-  } else {
-    addFavorite(paletteIndex);
-  }
-  paintPalettes();
-};
 
-//Leer datos seleccionados ¿Is favorite? true/false
-const getClickedPalette = ev => {
-  const clickedPaletteIndex = 1;
-  console.log('Get clicked palette from event and return the clicked palette index >>> Clicked palette:', clickedPaletteIndex);
-  return clickedPaletteIndex;
-};
-const isFavoritePalette = paletteIndex => {
-  if (paletteIndex === 1) {
-    console.log(`Check if paletteIndex ${paletteIndex} it is favorite >>>`, true);
-    return true;
-  } else {
-    console.log(`Check if paletteIndex ${paletteIndex} it is not favorite >>>`, false);
-    return false;
-  }
-};
+// //Leer datos seleccionados
 
-//Cambiar estilo de los datos seleccionados
+//¿Is favorite? true/false
 
-// const addStylesToSelectedShowCard = () => {
-//   if (isFavoriteShowCard) 
-// };
+// //Cambiar estilo de los datos seleccionados - toggle
 
-//Guardar datos seleccionados en un array de FAVORITOS
-const addFavorite = paletteIndex => {
-  favorites.push(paletteIndex);
-  console.log('Add paletteIndex to `favorites` array >>> Favorites:', favorites);
-};
+// // const addStylesToSelectedShowCard = () => {
+// //   if (isFavoriteShowCard)
+// // };
 
-//Pintar en FAVORITOS (temporizador 1s) para permitir ver el cambio de la tarjeta
+// //Guardar datos seleccionados en un array de FAVORITOS
 
-//Guardar datos en localStorage
+// //Pintar en FAVORITOS (temporizador 1s) para permitir ver el cambio de la tarjeta opcional
 
-//Traer datos de localStorage tras hacer F5
+// //Guardar datos en localStorage
 
-////////////////////////////////////////////
+// //Traer datos de localStorage tras hacer F5
 
-//OPCIONAL Crear funcionalidad 'Quitar de Favoritos'
-const removeFavorite = paletteIndex => {
-  console.log('Remove paletteIndex from `favorites` array >>> Favorites:', favorites);
-};
+// ////////////////////////////////////////////
 
-//OPCIONAL Reset Button
+// //OPCIONAL Crear funcionalidad 'Quitar de Favoritos'
