@@ -18,7 +18,7 @@
     font-family: $font;
     font-size: 30px;
     text-align: center;
-    margin: 15px 10px 40px 10px;
+    margin: 25px 10px 10px 10px;
   }
 
   &__title--favorites {
@@ -30,7 +30,7 @@
 }
 .fa-heart {
   color: $mark-color;
-  margin: 15px 10px 40px 10px;
+  margin: 25px 10px 20px 10px;
 }
 .js-resultList {
   display: flex;
