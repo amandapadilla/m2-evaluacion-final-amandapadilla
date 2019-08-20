@@ -39,7 +39,8 @@ const formatServerData = data => {
   for (let i = 0; i < data.length; i++) {
     result.push({
       name: data[i].show.name,
-      image: data[i].show.image.medium
+      image: data[i].show.image.medium,
+      language: data[i].show.language
     });
   }
   return result;
@@ -61,11 +62,29 @@ const paintShowCards = () => {
   ) {
     const showCardsName = showCards[showCardsIndex].name;
     const showCardsImg = showCards[showCardsIndex].image;
+    const showCardsLang = showCards[showCardsIndex].language;
     htmlCode += `<li class="result-itemName js-showCard" data-index="${showCardsIndex}">${showCardsName}<img src="${showCardsImg}" class="result-itemImage js-showCardsImage"></li>`;
   }
   showCardsList.innerHTML = htmlCode;
 };
 
+// const languages = ["English", "Spanish", "Portuguese"];
+
+// const getRecommendedShow = showCardLang => {
+//   if (isRecommendedLanguage(showCardLang) === true) {
+//     return "Recomendado";
+//   } else {
+//     return "";
+//   }
+// };
+
+// const isRecommendedLanguage = showCardLang => {
+//   if (showCardLang === "English") {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// };
 ////////////////////////////////////////////
 
 //Escuchar click sobre tarjeta de serie
