@@ -1,29 +1,37 @@
 .main {
-  background-color: pink;
+  height: 100vh;
+  background-color: $mark-color;
   display: flex;
-  flex-direction: row-reverse;
   justify-content: space-between;
 
   &__results--container {
-    width: 60%;
+    width: 65%;
   }
 
   &__aside--container {
-    width: 30%;
+    width: 35%;
+    background-color: $primary-color;
   }
 
   &__title--results {
+    color: $primary-color;
     font-family: $font;
+    font-size: 30px;
     text-align: center;
-    margin-bottom: 10px;
+    margin: 15px 10px 40px 10px;
   }
 
   &__title--favorites {
+    text-align: center;
+    color: $secondary-color;
     font-family: $font;
-    margin-left: 5px;
+    font-size: 30px;
   }
 }
-
+.fa-heart {
+  color: $mark-color;
+  margin: 15px 10px 40px 10px;
+}
 .js-resultList {
   display: flex;
   flex-direction: column;

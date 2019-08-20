@@ -62,8 +62,8 @@ const paintShowCards = () => {
   ) {
     const showCardsName = showCards[showCardsIndex].name;
     const showCardsImg = showCards[showCardsIndex].image;
-    const showCardsLang = showCards[showCardsIndex].language;
-    htmlCode += `<li class="result-itemName js-showCard" data-index="${showCardsIndex}">${showCardsName}<img src="${showCardsImg}" class="result-itemImage js-showCardsImage"></li>`;
+    // const showCardsLang = showCards[showCardsIndex].language;
+    htmlCode += `<li class="result__item js-showCard" data-index="${showCardsIndex}"><p class="result__item--name">${showCardsName}</p><img src="${showCardsImg}" class="result__item--image js-showCardsImage"></li>`;
   }
   showCardsList.innerHTML = htmlCode;
 };
@@ -116,7 +116,7 @@ const paintFavoritesShowCards = () => {
   ) {
     const favoritesName = favorites[showCardsIndex].name;
     const favoritesImg = favorites[showCardsIndex].image;
-    htmlCode += `<li class="result-favoriteName js-favoriteShowName" data-index="${showCardsIndex}">${favoritesName}<img src="${favoritesImg}" class="result-favoriteImage js-favoriteShowImage"></li>`;
+    htmlCode += `<li class="result__favorite--item js-favoriteShowName" data-index="${showCardsIndex}"><p class="result__favorite--name">${favoritesName}</p><img src="${favoritesImg}" class="result__favorite--image js-favoriteShowImage"></li>`;
   }
   showCardsFavoritesList.innerHTML = htmlCode;
 };
