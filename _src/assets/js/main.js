@@ -47,6 +47,7 @@ const saveDataInShowCards = data => {
 };
 
 // Pintar resultados en display
+
 const paintShowCards = () => {
   let showCardsList = document.querySelector(".js-resultList");
   let htmlCode = "";
@@ -62,6 +63,10 @@ const paintShowCards = () => {
   }
   showCardsList.innerHTML = htmlCode;
 };
+
+//Cambiar estilo de CSS al fondo de resultados - height: 100% en lugar de height: 100vh; con inner.HTML
+
+//Si no tiene imagen utilizar un placeholder por defaul, si la tiene usar la suya. FUNCIÓN CONDICIONAL
 
 ////////////////////////////////////////////
 
@@ -82,6 +87,8 @@ const listenShowCards = () => {
     card.addEventListener("click", addShowCardsToFavorites);
   }
 };
+
+// Cuando se haga click sobre una serie intercambiar el color de fondo y el de fuente (toggle)
 
 // //Pintar en FAVORITOS
 const paintFavoritesShowCards = () => {
@@ -112,4 +119,13 @@ const getFavoritesFromLocalStorage = () => {
   let getFavorites = JSON.parse(localStorage.getItem("show"));
 };
 getFavoritesFromLocalStorage();
-// ////////////////////////////////////////////
+
+// //////////////////////////////////////////// BONUS
+
+// BORRAR FAVORITOS
+
+// Borrar de la lista de favoritos de la página
+
+// Borrar del Local Storage para que al recargar la página ya no aparezca.
+
+// **** Cuando una serie YA ES Favorita hacer que aparezca en resultados con los colores de fondo y fuente intercambiados (Mantener el toggle anterior)
