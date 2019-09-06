@@ -3,6 +3,7 @@
   background-color: $mark-color;
   display: flex;
   justify-content: space-between;
+  overflow-y: auto;
 
   &__results--container {
     width: 65%;

@@ -1,4 +1,4 @@
-![SearchTVShows](_src/assets/images/logo-adalab-80px.png)
+![SearchTVShows](_src/assets/images/page.png)
 
 Evaluación final del módulo 2 by amandapadilla
 
