@@ -13,29 +13,32 @@
     <body>
         <div class="page">
             <header class="header">
-                 <h1 class="header__title">¡Encuentra tus series favoritas!</h1>
+                <img src="./assets/images/TV.png" alt="TV" class="header__image" />
+                 <h1 class="header__title">TV SHOW Searcher</h1>
 
                 <form action="search" class="form">
                     <input type="search" name="searchBox" class="form__input--search js-inputSearch"
-                    id="searchBox" placeholder="Escribe aquí" />
-                    <button class="form__input--submit js-searchSubmit">Buscar <i class="fas fa-search"></i>
+                    id="searchBox" placeholder="Show name here..." />
+                    <button class="form__input--submit js-searchSubmit">Search NOW! <i class="fas fa-search"></i>
 
                     </button>
                 </form>
             </header>
             <main class="main">
                 <div class="main__results--container">
-                     <h2 class="main__title--results">Resultados</h2>
+                     <h2 class="main__title--results">Results</h2>
 
                     <div class="main__display--results js-displayResults">
-                        <ul class="js-resultList"></ul>
+                        <ul class="result js-resultList"></ul>
                     </div>
                 </div>
                 <aside class="main__aside--container">
-                     <h2 class="main__title--favorites">Favoritos</h2>
+                     <h2 class="main__title--favorites">
+      <i class="fas fa-heart"></i>Favorites
+    </h2>
 
                     <div class="main__display--favorites js-displayFavorites">
-                        <ul class="main__list--favorites js-favoritesList"></ul>
+                        <ul class="favorites js-favoritesList"></ul>
                     </div>
                 </aside>
             </main>

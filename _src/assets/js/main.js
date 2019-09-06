@@ -64,9 +64,15 @@ const paintShowCards = () => {
   showCardsList.innerHTML = htmlCode;
 };
 
-//Cambiar estilo de CSS al fondo de resultados - height: 100% en lugar de height: 100vh; con inner.HTML
+//Si no tiene imagen utilizar un placeholder por default, si la tiene usar la suya. FUNCIÓN CONDICIONAL
 
-//Si no tiene imagen utilizar un placeholder por defaul, si la tiene usar la suya. FUNCIÓN CONDICIONAL
+// function hasCoverImageUrl() {
+//   if (showCardsImg === "") {
+//     showCardsImg = "./assets/images/default-image.png";
+//   } else {
+//     showCardsImg.value;
+//   }
+// }
 
 ////////////////////////////////////////////
 
